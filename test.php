@@ -14,6 +14,10 @@ require_once('rc/rcube_message.php');
 $imap = new rcube_imap();
 $imap->connect('<HOST>', '<USER>', '<PASS>');
 
+// number of items to fetch (per page)
+$imap->set_pagesize(50);
+$imap->set_page(1);
+
 foreach($imap->list_headers() as $header)
 {
 	// parsed header
