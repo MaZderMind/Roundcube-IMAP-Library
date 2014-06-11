@@ -45,6 +45,12 @@ foreach($imap->list_headers() as $header)
 	echo "\n=== attachments ===\n";
 	print_r($logical->attachments);
 	
+	foreach ($logical->attachments as $idx => $attachment) {
+		echo "\n=== attachment[$idx] ===\n";
+
+		$data = $logical->get_part_content($attachment->mime_id);
+		printf("read %u bytes of %s-data\n", strlen($data), $attachment->mimetype);
+	}
 	
 	echo "\n\n\n\n==================================================================================================================================\n\n\n\n\n";
 }
